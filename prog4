@@ -1,0 +1,79 @@
+Program link: https://www.hackerrank.com/contests/w36/challenges/acid-naming/problem
+Program:
+Submissions will no longer be placed on the leaderboard. You may still attempt this problem for practice.
+Jonathan is in a science class, but because he does not understand how to name acids, he would like you to make a program for him. There are two types of acids at his level,  and .
+
+Conditions for naming an acid:
+
+If the given input starts with hydro and ends with ic then it is a non-metal acid.
+If the input only ends with ic then it is a polyatomic acid.
+If it does not have either case, then output not an acid.
+For example, for the input, , the correct output is -  as the input begins with hydro and ends withic.
+
+Complete the function acidNaming which takes a string input with the name of the acid, and return a string describing the appropriate type of acid.
+
+Input Format
+
+The first line will contain an integer . 
+The next  lines will contain a single word .
+
+Constraints
+
+Word  is made up of lower-case english letters.
+ Length of 
+Output Format
+
+If the word starts with hydro and ends with ic then it is a non-metal acid. Hence, the correct output is - .
+
+If the word only ends with ic then it is a  . Hence, the correct output is  .
+
+If the word does not meet any of the cases, then the correct output is   .
+
+Sample Input 0
+
+3
+hydrochloric
+rainbowic
+idontevenknow
+Sample Output 0
+
+non-metal acid
+polyatomic acid
+not an acid
+Explanation 0
+
+In the first case, the input begins with hydro and ends with ic, hence, the correct output is - . 
+In the second case, the input only ends with ic, hence, the correct output is  . 
+The third case, the input neither begins with hydro nor ends with ic, hence the correct output is   .
+Code:
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static String acidNaming(String a) {
+        // Complete this function
+        int n=a.length();
+        
+        if(n>7 && a.charAt(0)=='h' && a.charAt(1)=='y' &&a.charAt(2)=='d' &&a.charAt(3)=='r' &&a.charAt(4)=='o' &&a.charAt(n-1)=='c' &&a.charAt(n-2)=='i' )
+            return "non-metal acid";
+        else if(n>2 && a.charAt(n-1)=='c' &&a.charAt(n-2)=='i')
+            return "polyatomic acid";
+        else 
+            return "not an acid";
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        for(int a0 = 0; a0 < n; a0++){
+            String acid_name = in.next();
+            String result = acidNaming(acid_name);
+            System.out.println(result);
+        }
+        in.close();
+    }
+}
