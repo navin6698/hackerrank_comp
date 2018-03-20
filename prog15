@@ -1,0 +1,122 @@
+Program Link:
+https://www.hackerrank.com/contests/hourrank-21/challenges/who-gets-the-catch/problem
+Program:
+
+Code:
+A wild venotoise has spawned in the middle of the street, and  catchers are nearby! Venotoises are quite rare and disappear quickly, so the  catchers begin racing towards it. Your task is to find who will catch the venotoise.
+
+image
+
+We represent the street as a long, straight line. The  catcher is located at position  along this line, and the venotoise is located at position . The venotoise is stationary, and the  catcher is moving towards the venotoise at a speed of  units per second. A catcher moving at a speed of  units per second can travel a distance of  units in exactly  seconds.
+
+The first catcher that makes it to the location of the venotoise catches it. If there isn't a unique "first catcher", that is, if there are two or more catchers that initially reach the venotoise at the exact same time, then the venotoise disappears, and no one gets the catch.
+
+Input Format
+
+The first line contains two space-separated integers, , the number of catchers, and , the venotoise's location. The second line contains  space-separated integers, , denoting the locations of the catchers. 
+The third line contains  space-separated integers, , denoting the speeds of the catchers.
+
+Constraints
+
+Each catcher can reach the venotoise's location in an integer number of seconds.
+Output Format
+
+Print one line containing a single integer denoting the index of the catcher that catches the venotoise, or  if no one gets the catch.
+
+Sample Input 0
+
+4 400
+500 500 900 200
+2 4 25 5
+Sample Output 0
+
+2
+Explanation 0
+
+In this example, there are  catchers and the venotoise is at location .
+
+image
+
+Catcher  is at location  and has a speed of . It will take her  seconds to reach the venotoise.
+Catcher  is at location  and has a speed of . It will take him  seconds to reach the venotoise.
+Catcher  is at location  and has a speed of . It will take him  seconds to reach the venotoise.
+Catcher  is at location  and has a speed of . It will take her  seconds to reach the venotoise.
+Thus, catcher  reaches the venotoise ahead of everyone else, so we print 2.
+
+Sample Input 1
+
+4 400
+500 500 900 200
+2 4 25 10
+Sample Output 1
+
+-1
+Explanation 1
+
+This is similar to the first example, except that catcher  now has a speed of , so it will take her seconds to reach the venotoise.
+
+image
+
+Thus, catcher  and catcher  reach the venotoise at the same time and ahead of everyone else, so the venotoise disappears and no one gets the catch. Thus, we print -1.
+
+Sample Input 2
+
+4 400
+400 500 900 200
+2 4 25 5
+Sample Output 2
+
+0
+Explanation 2
+
+This is similar to the first example, except that catcher  is now located at , which means she's already in the same location as the venotoise! Specifically, it will take her  seconds to reach the venotoise.
+
+image
+
+Thus, catcher  reaches the venotoise ahead of everyone else, so we print 0.
+
+Code:
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static int whoGetsTheCatch(int n, int x, int[] X, int[] V){
+        // Complete this function
+        float[] times = new float[n];
+    int minPosition = -1;
+    int numAtMin = 0;
+
+    for (int i = 0 ; i < n ;  i++) {
+        times[i] = Math.abs((float) X[i]-x) / V[i];
+        if (minPosition == -1 || times[i] < times[minPosition]) {
+            minPosition = i;
+            numAtMin = 1;
+        } else if (times[i] == times[minPosition]) {
+            numAtMin++;
+        }
+    }
+
+    return numAtMin == 1 ? minPosition: -1;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        //  Return the index of the catcher who gets the catch, or -1 if no one gets the catch.
+        int n = in.nextInt();
+        int x = in.nextInt();
+        int[] X = new int[n];
+        for(int X_i=0; X_i < n; X_i++){
+            X[X_i] = in.nextInt();
+        }
+        int[] V = new int[n];
+        for(int V_i=0; V_i < n; V_i++){
+            V[V_i] = in.nextInt();
+        }
+        int result = whoGetsTheCatch(n, x, X, V);
+        System.out.println(result);
+    }
+}
