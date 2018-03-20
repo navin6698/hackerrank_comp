@@ -1,0 +1,92 @@
+Program link:
+https://www.hackerrank.com/contests/w33/challenges/twin-arrays/problem
+Program:
+You are given two arrays  and  each containing  integers. You need to choose exactly  number from A and exactly  number from B such that the index of the two chosen numbers is not same and the sum of the 2 chosen values is minimum.
+
+Your objective is to find and print this minimum value.
+
+For example in the image shown below  is the minimum sum.
+
+image
+
+Input Format
+
+The first line contains an integer  denoting the size of two arrays. 
+Each of the next two lines contains  space separated integers denoting array  and  respectively.
+
+Constraints
+
+Output Format
+
+Print the minimum sum which can be obtained under the conditions mentioned in the problem statement.
+
+Sample Input 0
+
+5
+5 4 3 2 1
+1 2 3 4 5
+Sample Output 0
+
+2
+Explanation 0
+
+Minimum sum will be obtained by chosing number at the last index of first array and first index of the second array, i.e. .2
+
+Code:
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+   static int min(int []arr){
+        int m=1000000;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]<m){
+                m=arr[i];
+            }
+        }
+        return m;
+    }
+    static int twinArrays(int[] ar1, int[] ar2){
+        // Complete this function
+        int x,y,z=0,m=0,n=0,p=0;
+        x=min(ar1);
+        y=min(ar2);
+        for(int i=0;i<ar1.length;i++){
+            if(x==ar1[i]){
+                z=i;
+            }
+            if(y==ar2[i]){
+                n=i;
+            }          
+        }
+        if(n==z){
+            ar2[n]=1000000;
+           m= min(ar2);
+            p=m+x;
+        }
+         else{
+        p=y+x;
+         }
+        return p;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[] ar1 = new int[n];
+        for(int ar1_i = 0; ar1_i < n; ar1_i++){
+            ar1[ar1_i] = in.nextInt();
+        }
+        int[] ar2 = new int[n];
+        for(int ar2_i = 0; ar2_i < n; ar2_i++){
+            ar2[ar2_i] = in.nextInt();
+        }
+        int result = twinArrays(ar1, ar2);
+        System.out.println(result);
+    }
+}
