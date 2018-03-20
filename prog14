@@ -1,0 +1,89 @@
+Program link:
+https://www.hackerrank.com/contests/w33/challenges/pattern-count/problem
+Program:
+A string  contains many patterns of the form  where  represents any non-empty consecutive sequence of 's. The patterns are allowed to overlap.
+
+For example, consider string , we can see there are two consecutive sequences  and  which are of the form .
+
+image
+
+You have to answer  queries, each containing a string . For each query, find and print the total number of patterns of the form  that occur in .
+
+Input Format
+
+The first line contains a single integer , denoting the number of queries. After that,  lines follow. The  of them represents the  test case and contains a string  for this test case.
+
+Constraints
+
+ contains only digits and lowercase English letters
+Output Format
+
+Output exactly  lines, one for each testcase.
+
+Sample Input 0
+
+3
+100001abc101
+1001ab010abc01001
+1001010001
+Sample Output 0
+
+2
+2
+3
+Explanation 0
+
+In the first case,  we have  as  and  as . Hence, we print  as the answer.
+In the second case,  we have  as  and  as . Hence, we print  as the answer.
+In the third case,  we have  as ,  as  and  as . Hence, we print  as the answer.
+Code:
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static int patternCount(String str){
+        // Complete this function
+        int len = str.length();
+        boolean oneSeen = false;
+         
+        int count = 0;  // Initialize result
+        for(int i = 0; i < len ; i++)
+        {
+            char getChar = str.charAt(i);
+             
+            // if 1 encountered for first time
+            // set oneSeen to 1
+            if(getChar == '1' && oneSeen == false)
+                oneSeen = true;
+             
+            // Check if there is any other character
+            // other than '0' or '1'. If so then set
+            // oneSeen to 0 to search again for new
+            // pattern
+            else if(getChar != '0' && str.charAt(i) != '1')
+                oneSeen = false;
+             
+            // Check if encountered '1' forms a valid
+            // pattern as specified
+            else if (getChar == '1' && oneSeen == true){
+                if (str.charAt(i - 1) == '0')
+                    count++;
+            }
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int q = in.nextInt();
+        for(int a0 = 0; a0 < q; a0++){
+            String s = in.next();
+            int result = patternCount(s);
+            System.out.println(result);
+        }
+    }
+}
