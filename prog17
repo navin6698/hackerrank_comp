@@ -1,0 +1,104 @@
+Program link:
+https://www.hackerrank.com/contests/101hack49/challenges/cartesian-country/problem
+Program:
+Cartesian Country is a rectangular region of the xy-plane with corners at  and . Each lattice point (i.e., point with integer  and  coordinates) in Cartesian Country denotes an island city surrounded by water.
+
+The country's Rulers live in the capital at coordinate . Traveling between cities and the capital is a treacherous sea journey, so they decide to commission bridges satisfying all the following conditions:
+
+A bridge is a straight line with endpoints at two non-capital cities.
+The capital must be at the exact center (or midpoint) of the line.
+Two overlapping bridges are considered to be different if they connect different cities.
+For example, the diagram on the left depicts Cartesian Country as a rectangle with opposite corners at  and  and isolated cities at its lattice points. The diagram on the right depicts the maximum number of bridges we can build when the capital is located at  (i.e., the red circle):
+
+image
+
+Note that any two cities connected by a bridge have the same color, and we've constructed a maximal  bridges between cities  and ,  and ,  and , and  and .
+
+Given , , and , find and print the maximum number of bridges the Rulers will commission.
+
+Input Format
+
+The first line contains two space-separated integers describing the respective values of  and . 
+The second line contains two space-separated integers describing the respective values of  and . 
+The third line contains two space-separated integers describing the respective values of  and .
+
+Constraints
+
+Output Format
+
+Print a long integer denoting the maximum number of bridges the Rulers will commission.
+
+Sample Input 0
+
+1 1
+5 4
+2 3
+Sample Output 0
+
+4
+Explanation 0
+
+The Rulers can commission a maximum of four bridges:
+
+image
+
+Thus, we print  as our answer.
+
+Sample Input 1
+
+1 1
+5 4
+3 2
+Sample Output 1
+
+7
+Explanation 1
+
+The Rulers can commission a maximum of seven bridges:
+
+image
+
+These bridges connect cities  and ,  and ,  and ,  and ,  and ,  and , and  and . Thus, we print  as our answer.
+Code:
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static long getMaxBridges(long x1, long y1, long x2, long y2, long xC, long yC){
+        // Complete this function
+        long matrizX, matrizY;
+
+        if (xC-x1 <x2 -xC)
+            matrizX = xC - x1;
+        else
+            matrizX = x2 - xC;
+
+        if (yC - y1 < y2 - yC)
+            matrizY = yC - y1;
+        else
+            matrizY = y2 - yC;
+
+        long totalXNodes = matrizX * 2 + 1;
+        long totalYNodes = matrizY * 2 + 1;
+
+        long totalNodes = (totalYNodes * totalXNodes -1) / 2;
+        return totalNodes;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        //  Return the maximum number of bridges the Rulers will commission.
+        long x1 = in.nextLong();
+        long y1 = in.nextLong();
+        long x2 = in.nextLong();
+        long y2 = in.nextLong();
+        long xC = in.nextLong();
+        long yC = in.nextLong();
+        long result = getMaxBridges(x1, y1, x2, y2, xC, yC);
+        System.out.println(result);
+    }
+}
