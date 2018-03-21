@@ -1,0 +1,88 @@
+program link:
+https://www.hackerrank.com/contests/rookierank-3/challenges/comparing-times/problem
+program:
+Given two times,  and , in the 12-hour AM/PM format, we want to know which time occurs first during a day. For example, if  is 08:02PM and  is 06:51AM, then  occurs before .
+
+Solve  queries where each query consists of some  and . For each query, print First if  occurs before ; otherwise, print Second.
+
+Note: The day starts at 12:00AM (midnight) and ends at 11:59PM. The time 12:00PM denotes noon (midday).
+
+Input Format
+
+The first line contains an integer denoting  (the number of queries). 
+Each of the  subsequent lines contains two space-separated strings describing the respective values of  and .
+
+Constraints
+
+Output Format
+
+For each query, print First if  occurs before ; otherwise, print Second.
+
+Note: If using the given code stubs, complete the function so that it returns the appropriate string.
+
+Sample Input 0
+
+2
+10:19PM 02:49AM
+08:49AM 09:10AM
+Sample Output 0
+
+Second
+First
+Explanation 0
+
+We perform the following  queries:
+
+ is 10:19PM and  is 02:49AM. Because AM always occurs before PM, we know that  occurs earlier and we print Second.
+ is 08:49AM and  is 09:10AM.
+ Both times occur during the AM (first half of the day), so we compare their hours. Because , we know that 
+ occurs earlier and we print First.
+code:
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static String timeCompare(String t1, String t2){
+        // Complete this function
+        if(t1.contains("AM") && !t2.contains("AM"))
+            return "First";
+        if(t1.contains("PM") && !t2.contains("PM"))
+            return "Second";
+        
+        int hour1 = Integer.parseInt(t1.substring(0, 2));
+        int hour2 = Integer.parseInt(t2.substring(0, 2));
+        int minute1 = Integer.parseInt(t1.substring(3, 5));
+        int minute2 = Integer.parseInt(t2.substring(3, 5));
+        
+        if(hour1 != hour2) {
+            if(hour1 == 12)
+                return "First";
+            if(hour2 == 12)
+                return "Second";
+            if(hour1 < hour2)
+                return "First";
+            else
+                return "Second";
+        } else {
+            if(minute1 < minute2)
+                return "First";
+            else
+                return "Second";
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int q = in.nextInt();
+        for(int a0 = 0; a0 < q; a0++){
+            String t1 = in.next();
+            String t2 = in.next();
+            String result = timeCompare(t1, t2);
+            System.out.println(result);
+        }
+    }
+}
