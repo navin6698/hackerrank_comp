@@ -1,0 +1,105 @@
+program link:
+https://www.hackerrank.com/contests/101hack49/challenges/calculate-array-size
+program:
+We define a multidimensional array of integers to be an array containing one or more arrays of integers. Here are some examples of multidimensional arrays declared in C++:
+
+int a[93401];      // 1-dimensional array
+int b[10][1000];   // 2-dimensional array
+int c[25][30][70]; // 3-dimensional array
+int d[15][48];     // 2-dimensional array
+We want to find the amount of storage space required by the array in kilobytes, assuming that a single integer is bytes and there are  bytes in  kilobyte.
+
+For example, let's consider array , which is a -dimensional integer array with space for  integers, which requires  bytes of space. When we convert our bytes to kilobytes, we get  kilobytes.
+
+Given the respective sizes for each dimension of an -dimensional array, print the array's storage space in kilobytes as a single floor-rounded integer.
+
+Input Format
+
+The first line contains an integer denoting  (the number of dimensions in the multidimensional array). 
+The second line contains  space-separated integers describing the respective values of  for a multidimensional array with the dimensions .
+
+Constraints
+
+The multidimensional array can hold up to a maximum of  total integers.
+Output Format
+
+Print a floor-rounded integer denoting the multidimensional array's storage space in kilobytes.
+
+Sample Input 0
+
+1
+93401
+Sample Output 0
+
+364
+Explanation 0
+
+We have an  dimensional array with space for  integers (i.e., int d[93401];). It takes  bytes to represent these integers, which converts to  kilobytes. We then print the floor-rounded result of this calculation, which is .
+
+Sample Input 1
+
+2
+10 1000
+Sample Output 1
+
+39
+Explanation 1
+
+We have an  dimensional array with space for  integers (i.e., int d[10][1000];). It takes  bytes to represent these integers, which converts to  kilobytes. We then print the floor-rounded result of this calculation, which is .
+
+Sample Input 2
+
+3
+25 30 70
+Sample Output 2
+
+205
+Explanation 2
+
+We have an  dimensional array with space for  integers (i.e., int d[25][30][70];). It takes  bytes to represent these integers, which converts to  kilobytes. We then print the floor-rounded result of this calculation, which is .
+
+Sample Input 3
+
+2
+15 48
+Sample Output 3
+
+2
+Explanation 3
+
+We have an  dimensional array with space for  integers (i.e., int d[15][48];). This array allocates space to store  integers, which we can visualize as the following  matrix:
+
+image
+
+We need  bytes to store  integers, which converts to  kilobytes. We then print the floor-rounded result of this calculation, which is .
+code:
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static int getArrayKb(int n, int[] d){
+        // Complete this 
+        long x=1L;
+        for(int i=0;i<n;i++){
+            x*=d[i];
+        }
+        x=x*4;
+        return (int)(x/1024);
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        //  Return the size of the multidimensional array in kilobytes. Return only the integer part.
+        int n = in.nextInt();
+        int[] d = new int[n];
+        for(int d_i=0; d_i < n; d_i++){
+            d[d_i] = in.nextInt();
+        }
+        int result = getArrayKb(n, d);
+        System.out.println(result);
+    }
+}
