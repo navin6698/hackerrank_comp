@@ -1,0 +1,84 @@
+Prog link:
+https://www.hackerrank.com/contests/101hack47/challenges/permutation-possibility/problem
+Prog:
+A permutation of a sequence, , is a sequence consisting of some rearrangement of the elements of . For example, all the permutations of  are , , , , , and .
+
+Mark writes sequence  on a piece of paper and asks Lisa to insert zero or more integers anywhere in the sequence so that it becomes a permutation of  (i.e., a sequence of distinct integers from  to ) for any integer .
+
+Given , print YES if Lisa's task is possible; otherwise, print NO instead.
+
+Input Format
+
+The first line contains a single integer denoting . 
+The second line contains  space-separated integers describing the respective values of .
+
+Constraints
+
+Output Format
+
+If Lisa can insert integers into the sequence to make it a permutation of  for any , print YES; otherwise, print NO instead.
+
+Sample Input 0
+
+3
+1 2 3
+Sample Output 0
+
+YES
+Explanation 0
+
+Sequence  is already a sequence of  distinct integers. Because Lisa's task is complete without adding any elements, we print YES.
+
+Sample Input 1
+
+3
+2 2 1
+Sample Output 1
+
+NO
+Explanation 1
+
+The sequence  cannot be converted into a permuted sequence of  distinct integers because no amount of added integers will change that the number  appears twice in the sequence. Thus, we print NO.
+
+Sample Input 2
+
+3
+4 1 6
+Sample Output 2
+
+YES
+Explanation 2
+
+Given , Lisa can insert , , and  into  to turn it into a sequence of  distinct integers. Thus, we print YES
+Code:
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int m = in.nextInt();
+        int[] s = new int[m];
+        for(int s_i=0; s_i < m; s_i++){
+            s[s_i] = in.nextInt();
+        }
+       int flag = 0;
+        Set hs = new HashSet();
+        for (int i = 0; i < s.length; i++) {
+            if (!hs.contains(s[i])) {
+                hs.add(s[i]);
+            } else {
+                System.out.println("NO");
+                flag = 1;
+                break;
+            }
+        }
+        if (flag == 0) {
+            System.out.println("YES");
+        }
+    }
+}
