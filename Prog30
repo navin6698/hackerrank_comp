@@ -1,0 +1,82 @@
+Program link:
+https://www.hackerrank.com/contests/w30/challenges/candy-replenishing-robot/problem
+Program:
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int t = in.nextInt();
+        int[] c = new int[t];
+        for(int c_i=0; c_i < t; c_i++){
+            c[c_i] = in.nextInt();
+        }
+        // your code goes here
+        int candyIndex = 0;
+        int candiesRemaining = n;
+        //System.out.println("Initial amount of candies: "+candiesRemaining);
+        int candiesAdded = 0;
+        for (int i = 0; i < t; i++)
+        {
+            candiesRemaining -= c[i];
+            //System.out.println("Candies remaining after "+(i+1)+" minute: "+candiesRemaining);
+            if (candiesRemaining < 5 && i < t-1)
+            {
+                //refill the bowl
+                candiesAdded += n - candiesRemaining;
+                //System.out.println("Candies added: "+candiesAdded);
+                candiesRemaining += n - candiesRemaining;
+                //System.out.println("Candies remaining after refill: "+candiesRemaining);
+            }
+        }
+        
+        System.out.println(candiesAdded);
+        
+    }
+}
+code:
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int t = in.nextInt();
+        int[] c = new int[t];
+        for(int c_i=0; c_i < t; c_i++){
+            c[c_i] = in.nextInt();
+        }
+        // your code goes here
+        int candyIndex = 0;
+        int candiesRemaining = n;
+        //System.out.println("Initial amount of candies: "+candiesRemaining);
+        int candiesAdded = 0;
+        for (int i = 0; i < t; i++)
+        {
+            candiesRemaining -= c[i];
+            //System.out.println("Candies remaining after "+(i+1)+" minute: "+candiesRemaining);
+            if (candiesRemaining < 5 && i < t-1)
+            {
+                //refill the bowl
+                candiesAdded += n - candiesRemaining;
+                //System.out.println("Candies added: "+candiesAdded);
+                candiesRemaining += n - candiesRemaining;
+                //System.out.println("Candies remaining after refill: "+candiesRemaining);
+            }
+        }
+        
+        System.out.println(candiesAdded);
+        
+    }
+}
