@@ -1,0 +1,75 @@
+Program link:
+https://www.hackerrank.com/contests/101hack48/challenges/tight-arrays
+Program:
+We call an array of integers tight if every pair of adjacent integers in the array has an absolute difference . For example, the array  is tight, but the array  is not:
+
+Illustration of tight arrays.
+
+The diagram above shows the absolute differences between each pair of adjacent elements. Note that the second array is not tight, because it has a pair of adjacent elements whose absolute difference is greater than .
+
+Given , , and , complete the function below by returning the length of the shortest tight array such that the first element is , the last element is , and the array contains .
+
+Input Format
+
+Three space-separated integers describing the respective values of , , and .
+
+Constraints
+
+Output Format
+
+Return a single integer denoting the length of the shortest tight array such that the first element is , the last element is , and the array contains the element .
+
+Sample Input 0
+
+5 7 11
+Sample Output 0
+
+7
+Explanation 0
+
+Given , , and , we want to find the length of the shortest tight array starting with , ending with , and containing .
+
+The shortest possible tight array we can construct is . We then return its length, , as our answer.
+
+Sample Input 1
+
+3 1 2
+Sample Output 1
+
+4
+Explanation 1
+
+Given , , and , the shortest possible tight array we can construct is . We then return its length, , as our answer.
+
+Sample Input 2
+
+5 5 6
+Sample Output 2
+
+2
+Explanation 2
+
+Given , , and , the shortest possible tight array we can construct is . We then return its length, , as our answer.
+Code:
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static int shortestTightArray(int a, int b, int c){
+        // Complete this function
+        return Math.abs(b-a) + Math.abs(b-c) + 1;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int a = in.nextInt();
+        int b = in.nextInt();
+        int c = in.nextInt();
+        int result = shortestTightArray(a, b, c);
+        System.out.println(result);
+    }
+}
