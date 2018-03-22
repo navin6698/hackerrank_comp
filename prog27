@@ -1,0 +1,75 @@
+Prog Link:
+https://www.hackerrank.com/contests/hourrank-19/challenges/recover-the-array/problem
+Prog:
+Dani is writing some arrays in her favorite text editor HackerEdit. Each line of the document describes an array in the following format:
+
+Here  is the array's number of elements and  are its contents.
+
+Dani wrote  arrays in the file and left for lunch. To her dismay, her little brother Nik deleted all the newline characters from the file while she was gone! For example, consider the file in the table below:
+
+image
+
+Given the contents of Dani's HackerEdit file with all the newlines removed, find the value of  (i.e., the number of arrays in the initial file).
+
+Input Format
+
+The first line contains an integer denoting  (the number of integers in the file). 
+The second line contains  space-separated integers describing each respective value in the file.
+
+Constraints
+
+Output Format
+
+Print a single integer denoting .
+
+Sample Input 0
+
+11
+5 4 5 4 3 3 2 1 4 1 4
+Sample Output 0
+
+3
+Explanation 0
+
+The file looks like this after removing all the newlines:
+
+image
+
+After re-adding the newlines where they belong in the file, it looks like this:
+
+image
+
+Because there are three arrays declared in the reconstructed file, we print  as our answer.
+
+Approach:
+Remember that because of the way the
+file was initially set out, the first number in the new file will be the number of elements in the following array.
+Meaning, you know where that array ends and the next one begins. Since each line only contains one array, you can determine 
+where how many new lines there are.
+Code:
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[] file = new int[n];
+        for(int file_i=0; file_i < n; file_i++){
+            file[file_i] = in.nextInt();
+        }
+   
+            int t=0,count=0;
+            for(int i=0;i<file.length;i++){
+                t=file[i];
+                i=i+t;
+                count++;
+            }
+        System.out.println(count);
+    }
+}
