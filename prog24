@@ -1,0 +1,128 @@
+Prog Link:
+https://www.hackerrank.com/contests/101hack48/challenges/tight-arrays/problem
+Program:
+We call an array of integers tight if every pair of adjacent integers in the array has an absolute difference . For example, the array  is tight, but the array  is not:
+
+Illustration of tight arrays.
+
+The diagram above shows the absolute differences between each pair of adjacent elements. Note that the second array is not tight, because it has a pair of adjacent elements whose absolute difference is greater than .
+
+Given , , and , complete the function below by returning the length of the shortest tight array such that the first element is , the last element is , and the array contains .
+
+Input Format
+
+Three space-separated integers describing the respective values of , , and .
+
+Constraints
+
+Output Format
+
+Return a single integer denoting the length of the shortest tight array such that the first element is , the last element is , and the array contains the element .
+
+Sample Input 0
+
+5 7 11
+Sample Output 0
+
+7
+Explanation 0
+
+Given , , and , we want to find the length of the shortest tight array starting with , ending with , and containing .
+
+The shortest possible tight array we can construct is . We then return its length, , as our answer.
+
+Sample Input 1
+
+3 1 2
+Sample Output 1
+
+4
+Explanation 1
+
+Given , , and , the shortest possible tight array we can construct is . We then return its length, , as our answer.
+
+Sample Input 2
+
+5 5 6
+Sample Output 2
+
+2
+Explanation 2
+
+Given , , and , the shortest possible tight array we can construct is . We then return its length, , as our answer.
+Approach:
+We can split the problem into three cases:
+
+The leftmost character is an l
+This means the leftmost robot is heading leftwards. It's easy to see that this robot will not collide with any other robot;
+it's the leftmost robot, which means it will not hit anything along the way. Furthermore, no robot can hit it from behind since
+the moving robots have the same speed. Therefore, we can ignore the leftmost character of and work on a smaller string  with the
+leftmost character removed.
+
+We can repeat this argument: If the leftmost character in the new string  is still an l, remove it. We can keep on doing this until 
+the leftmost character is not an l anymore, or the string becomes empty.
+
+The rightmost character is an r
+Similarly to the previous case, we can ignore any r characters to the right. We can remove all rightmost rs until the rightmost
+character is not an r anymore, or the string becomes empty.
+
+The leftmost and rightmost characters are not l and r, respectively
+If the string is empty, then the answer is . So let's assume the string is not empty.
+
+In this case, we can actually show that all moving robots will hit another robot at some point. Therefore, the answer for
+this case is just the number of moving robots.
+
+This is easiest to see when the leftmost and rightmost characters are d. In this case, those robots serve as "walls", and no 
+moving robot can ever go past either of them.
+
+If the leftmost character is not a d, then by assumption it can only be an r. In this case, we can look at this robot as a
+"moving wall" that is moving rightward. Just as before, no moving robot can ever go past this "moving wall". The same is true 
+when the rightmost character is not a d (and hence can only be an l).
+
+Summary
+Let's summarize the algorithm. Given the string :
+
+Remove all leftmost ls in 
+Remove all rightmost rs in 
+Print the number of ls and rs in the resulting 
+
+
+Code:
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    int q;
+    cin >> q;
+    assert(q >= 1 and q <= 100);
+    
+    while (q--) {
+        string s;
+        cin >> s;
+        
+        int n = s.length();
+        assert(n >= 1 and n <= 1e5);
+        
+        for (char c: s) {
+            assert(c == 'l' or c == 'r' or c == 'd');
+        }
+        
+        int l = 0;
+        int r = n - 1;
+        
+        while (s[l++] == 'l');
+        while (s[r--] == 'r');
+        
+        int c = 0;
+        
+        for (int i = l - 1; i <= r + 1; i++) {
+            if (s[i] != 'd') {
+                c++;
+            }
+        }
+        
+        cout << c << endl;
+    }
+}
