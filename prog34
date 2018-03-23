@@ -1,0 +1,64 @@
+Program link:
+https://www.hackerrank.com/contests/rookierank-2/challenges/migratory-birds/problem
+Program:
+You have been asked to help study the population of birds migrating across the continent. Each type of bird you are interested in will be identified by an integer value. Each time a particular kind of bird is spotted, its id number will be added to your array of sightings. You would like to be able to find out which type of bird is most common given a list of sightings.If two or more types of birds are equally common, choose the type with the smallest ID number.
+
+Function Description
+
+Complete the migratoryBirds function described below to return the most common birds sighted.
+
+migratoryBirds( integer: n, integer: ar_size, integer array: ar)
+Parameters:
+ar_size: number of elements (sightings) in array
+ar: array of integer id's of birds sighted
+Returns: integer id of most common bird sightings
+Constraints
+
+It is guaranteed that each type is , , , , or .
+Raw Input Format
+
+The first line contains an integer denoting , the number of birds sighted and reported in the array . 
+The second line describes  as  space-separated integers representing the type numbers of each bird sighted.
+
+Sample Input 0
+
+6
+1 4 4 4 5 3
+Sample Output 0
+
+4
+Explanation 0
+
+The different types of birds occur in the following frequencies:
+
+Type :  bird
+Type :  birds
+Type :  bird
+Type :  birds
+Type :  bird
+The type number that occurs at the highest frequency is type , so we print  as our answer.
+Code:
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[] types = new int[n];
+        for(int arr_i=0; arr_i < n; arr_i++){
+            types[arr_i] = in.nextInt();
+        }
+        int[] frequencies = new int[6]; //A
+        for (int i = 0; i < types.length; i++) { //B
+            frequencies[types[i]] += 1; //C
+        }
+        int mostCommon = 0;
+        for (int i = 1; i < frequencies.length; i++) { //D
+            if (frequencies[mostCommon] < frequencies[i]) {
+                mostCommon = i; //E
+            }
+        }
+        System.out.println(mostCommon);
+    }
+}
