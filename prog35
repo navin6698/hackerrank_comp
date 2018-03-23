@@ -1,0 +1,63 @@
+Program Link:
+https://www.hackerrank.com/contests/rookierank-2/challenges/minimum-absolute-difference-in-an-array
+Program:
+Consider an array of integers, . We define the absolute difference between two elements, and  (where ), to be the absolute value of .
+
+Given an array of  integers, find and print the minimum absolute difference between any two elements in the array.
+
+Input Format
+
+The first line contains a single integer denoting  (the number of integers). 
+The second line contains  space-separated integers describing the respective values of .
+
+Constraints
+
+Output Format
+
+Print the minimum absolute difference between any two elements in the array.
+
+Sample Input 0
+
+3
+3 -7 0
+Sample Output 0
+
+3
+Explanation 0
+
+With  integers in our array, we have three possible pairs: , , and . The absolute values of the differences between these pairs are as follows:
+
+Notice that if we were to switch the order of the numbers in these pairs, the resulting absolute values would still be the same. The smallest of these possible absolute differences is , so we print  as our answer.
+Code:
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static int minimumAbsoluteDifference(int n, int[] arr) {
+        // Complete this function
+        int min=Integer.MAX_VALUE;
+        Arrays.sort(arr);
+        for(int i=0;i<n;i++){
+            if(i<n-1 && Math.abs(arr[i+1]-arr[i])<min){
+                min=Math.abs(arr[i+1]-arr[i]);
+            }
+        }
+        return min;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[] arr = new int[n];
+        for(int arr_i = 0; arr_i < n; arr_i++){
+            arr[arr_i] = in.nextInt();
+        }
+        int result = minimumAbsoluteDifference(n, arr);
+        System.out.println(result);
+        in.close();
+    }
+}
