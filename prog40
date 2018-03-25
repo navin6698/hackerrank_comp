@@ -1,0 +1,87 @@
+Program Link:
+https://www.hackerrank.com/contests/hourrank-16/challenges/leonardo-and-lucky-numbers
+Program:
+Leonardo thinks  and  are lucky digits! He defines a number as lucky if it can be represented as the sum of one or more of these lucky digits. For example, he considers the following numbers to be lucky:
+
+You are given  queries, where each query consists of a long integer denoting . For each query, print Yes on a new line if  is a lucky number; otherwise, print No.
+
+Input Format
+
+The first line contains an integer denoting . 
+Each of the  subsequent lines contains a long integer describing the value of  for a query.
+
+Constraints
+
+Subtasks
+
+ for  of the maximum score
+Output Format
+
+For each query, print Yes on a new line if  is a lucky number; otherwise, print No.
+
+Sample Input
+
+4
+1
+4
+11
+17
+Sample Output
+
+No
+Yes
+Yes
+No
+Explanation
+
+We perform the following  queries:
+
+ can't be represented as a sum of 's and 's, so we print No on a new line.
+ is a lucky digit (which means it's also a lucky number), so we print Yes on a new line.
+ can be represented as , so we print Yes on a new line.
+ can't be represented as a sum of 's and 's, so we print No on a new line.
+Code:
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+   public static boolean lucky_check(long num){
+    if(num<4 && num!=0){
+        return false;
+    }
+    if(num%7==0 || num%4==0){
+        return true;
+    }
+    else{
+
+        boolean check1 =  lucky_check(num-7);
+        boolean check2 =  lucky_check(num-4);
+
+        if(check1 || check2){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+
+
+}
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int q = in.nextInt();
+    for(int a0 = 0; a0 < q; a0++){
+        long n = in.nextLong();
+        if(lucky_check(n)){
+            System.out.println("Yes");
+        }
+        else{
+             System.out.println("No");
+        }
+    }
+}
