@@ -32,24 +32,16 @@ cutting-paper-squares.png
 
 Because it took her two cuts to get  pieces of size , we print  as our answer.
 Code:
-import java.io.*;
 import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
 
 public class Solution {
 
-    static int solve(int n, int m){
-        // Complete this function
-        return n*m-1;
-    }
-
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        int m = in.nextInt();
-        int result = solve(n, m);
-        System.out.println(result);
+        Scanner scan = new Scanner(System.in);
+        long n = scan.nextLong();
+        long m = scan.nextLong();
+        scan.close();
+        
+        System.out.println(n * m - 1);
     }
 }
