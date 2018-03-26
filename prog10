@@ -51,25 +51,25 @@ public class Solution {
         // Complete this function
         x++;
         while(true){
-        String s=String.valueOf(x);
-        int first=0;
-        int second=0;
+        String s=String.valueOf(x);// convert in to string
+        int first=0;//first half
+        int second=0;//second half
         for(int i=0;i<3;i++){
-            first+=Integer.parseInt(s.charAt(i)+"");
+            first+=Integer.parseInt(s.charAt(i)+"");//get the sum of first 3 no
         }
           for(int i=3;i<6;i++){
-           second+=Integer.parseInt(s.charAt(i)+"");
+           second+=Integer.parseInt(s.charAt(i)+"");//get the sum of next 3 no
         }
         if(first==second){
-            break;
+            break;//break if sum if equal
         }
-            x++;
+            x++;//increment to next number
             
             if(x>1000000){
                 return "NO";
             }
         }
-        return x+"";
+        return x+"";//return the number
        }
       
 
