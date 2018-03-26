@@ -84,3 +84,56 @@ public class Solution {
         bw.close();
     }
 }
+
+// 2nd type:
+
+import java.io.*;
+import java.math.*;
+import java.text.*;
+import java.util.*;
+import java.util.regex.*;
+
+public class Solution {
+
+
+    /*
+     * Complete the berthType function below.
+     */
+    static String berthType(int n) {
+        // Return the type of berth as described in the output format section.
+        String res="";
+        if(n%8==0){
+            res="SUB";
+        }
+        else if(n%8==7){
+            res="SLB";
+        }
+        else if(n%8==1 || n%8==4){
+            res="LB";
+        }
+        else if(n%8==2 || n%8==5){
+            res="MB";
+        }
+        else if(n%8==3 || n%8==6){
+            res="UB";
+        }
+
+        return res;
+    }
+
+
+    private static final Scanner scan = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int n = Integer.parseInt(scan.nextLine().trim());
+
+        String result = berthType(n);
+
+        bw.write(result);
+        bw.newLine();
+
+        bw.close();
+    }
+}
