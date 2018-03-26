@@ -64,3 +64,41 @@ public class Solution {
         in.close();
     }
 }
+// 2nd:
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static int examRush(int[] tm, int t) {
+        // Complete this function
+        Arrays.sort(tm);
+        int count=0;
+        for(int i=0;i<tm.length;i++){
+            if(t<=0 || (t-tm[i])<0)
+                break;
+            else
+            {
+                t-=tm[i];
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int t = in.nextInt();
+        int[] tm = new int[n];
+        for(int tm_i = 0; tm_i < n; tm_i++){
+            tm[tm_i] = in.nextInt();
+        }
+        int result = examRush(tm, t);
+        System.out.println(result);
+        in.close();
+    }
+}
