@@ -55,7 +55,7 @@ public class Solution {
         int first=0;//first half
         int second=0;//second half
         for(int i=0;i<3;i++){
-            first+=Integer.parseInt(s.charAt(i)+"");//get the sum of first 3 no
+            first+=Integer.parseInt(s.charAt(i)+"");//get the sum of first 3 no.]// append +"" because it casuses ascii value to be stored
         }
           for(int i=3;i<6;i++){
            second+=Integer.parseInt(s.charAt(i)+"");//get the sum of next 3 no
