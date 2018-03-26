@@ -31,7 +31,20 @@ Sample Output 0
 Explanation 0
 
 Minimum sum will be obtained by chosing number at the last index of first array and first index of the second array, i.e. .2
+Aproach:
+Find:
+ Minimum value from first array.
 
+ Second minimum value from first array.
+
+ Index of the minimum value from first array.
+
+ Minimum value from second array.
+
+ Second minimum value from second array.
+
+ Index of the minimum value from second array.
+ given code doesn't satisfy 2 test case
 Code:
 
 import java.io.*;
