@@ -58,12 +58,6 @@ import java.util.regex.*;
 
 public class Solution {
 
-    static void swap(int a,int b){
-        int temp=a;
-        a=b;
-        b=temp;
-    }
-    
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int m = in.nextInt();
