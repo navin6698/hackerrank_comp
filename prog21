@@ -48,11 +48,12 @@ public class Solution {
 
     static String timeCompare(String t1, String t2){
         // Complete this function
-        if(t1.contains("AM") && !t2.contains("AM"))
+        if(t1.contains("AM") && !t2.contains("AM"))//check wheather there is diff in AM and PM if yes return them
             return "First";
         if(t1.contains("PM") && !t2.contains("PM"))
             return "Second";
         
+        //convert minutes and hour to integer
         int hour1 = Integer.parseInt(t1.substring(0, 2));
         int hour2 = Integer.parseInt(t2.substring(0, 2));
         int minute1 = Integer.parseInt(t1.substring(3, 5));
