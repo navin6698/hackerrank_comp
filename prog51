@@ -1,0 +1,79 @@
+Prog link:
+https://www.hackerrank.com/contests/101hack40/challenges/designer-pdf-viewer
+Program:
+When you select a contiguous block of text in a PDF viewer, the selection is highlighted with a blue rectangle. In this PDF viewer, each word is highlighted independently. For example:
+
+PDF-highighting.png
+
+In this challenge, you will be given a list of letter heights in the alphabet and a string. Using the letter heights given, determine the area of the rectangle highlight in  assuming all letters are  wide.
+
+Input Format
+
+The first line contains  space-separated integers describing the respective heights of each consecutive lowercase English letter, ascii[a-z]. 
+The second line contains a single word, consisting of lowercase English alphabetic letters.
+
+Constraints
+
+, where  is an English lowercase letter.
+Word contains no more than  letters.
+Output Format
+
+Print a single integer denoting the area in  of highlighted rectangle when the given word is selected. Do not print units of measure.
+
+Sample Input 0
+
+1 3 1 3 1 4 1 3 2 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+abc
+Sample Output 0
+
+9
+Explanation 0
+
+We are highlighting the word abc:
+
+Letter heights are ,  and . The tallest letter, b, is  high. The selection area for this word is .
+
+Note: Recall that the width of each character is .
+
+Sample Input 1
+
+1 3 1 3 1 4 1 3 2 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 7
+zaba
+Sample Output 1
+
+28
+Explanation 1
+
+The tallest letter in  is  at . The selection area for this word is .
+Code:
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static int designerPdfViewer(int[] h, String word) {
+        // Complete this 
+        int x=1;
+        for(int i=0;i<word.length();i++){
+            if(x<h[(word.charAt(i))-97]){
+                x=h[(word.charAt(i))-97];
+            }
+        }
+        return (x*word.length());
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int[] h = new int[26];
+        for(int h_i = 0; h_i < 26; h_i++){
+            h[h_i] = in.nextInt();
+        }
+        String word = in.next();
+        int result = designerPdfViewer(h, word);
+        System.out.println(result);
+        in.close();
+    }
+}
