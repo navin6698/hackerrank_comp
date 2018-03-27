@@ -55,9 +55,11 @@ public class Solution {
         }
         Arrays.sort(a);        
 
+        //if first 2 min are equal then remove max element
         if(a[0]==a[1]){
             System.out.print(a[n-2]-a[0]);
         }
+        //if last 2 max are equal remove first min element
         else if(a[n-2]==a[n-1]){
             System.out.println(a[n-1]-a[1]);
         }
