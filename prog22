@@ -80,7 +80,9 @@ public class Solution {
 
     static String isSatisfiable(int c1, int c2, int h1, int h2){
         // Complete this function
-        //checking the initial condition for atleast and atmost    
+        //checking the initial condition for atleast and atmost  
+        
+        // check for each case c1 < h1,h2 and c2< h1,h2
         if((c1>=35) && (c2>=35) &&(h1<=95) && (h2<=95))
             {
             //checking the minimum temperature with max temperature
@@ -112,6 +114,39 @@ public class Solution {
         }
         //if it fails the basic condition return "no"
         else 
+            return "NO";
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        // Return "YES" if all four conditions can be satisfied, and "NO" otherwise
+        int c1 = in.nextInt();
+        int c2 = in.nextInt();
+        int h1 = in.nextInt();
+        int h2 = in.nextInt();
+        String result = isSatisfiable(c1, c2, h1, h2);
+        System.out.println(result);
+    }
+}
+// 2nd version
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static String isSatisfiable(int c1, int c2, int h1, int h2){
+        // Complete this function
+        if(c1>=35 && c2>=35 && h1<=95 && h2<=95){
+            if(c1<=h1 && c1<=h2 && c2<=h1 && c2<=h2){
+                return "YES";
+            }
+            else 
+                return "NO";
+        }
+        else
             return "NO";
     }
 
