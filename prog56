@@ -1,0 +1,67 @@
+Program Link:
+https://www.hackerrank.com/contests/w21/challenges/kangaroo/problem
+Program:
+There are two kangaroos on a number line ready to jump in the positive direction (i.e, toward ). Each kangaroo takes the same amount of time to make a jump, regardless of distance. That is, if kangaroo one jumps 3 meters and kangaroo two jumps 5 meters, they each do it in one second, for example.
+
+Given the starting locations and jump distances for each kangaroo, determine if and when they will land at the same location at the same time.
+
+Input Format
+
+A single line of four space-separated integers denoting the respective values of , , , and .
+
+Constraints
+
+Output Format
+
+Print YES if they can land on the same location at the same time; otherwise, print NO.
+
+Note: The two kangaroos must land at the same location after making the same number of jumps.
+
+Sample Input 0
+
+0 3 4 2
+Sample Output 0
+
+YES
+Explanation 0
+
+The two kangaroos jump through the following sequence of locations: 
+image
+The kangaroos meet after 4 jumps.
+
+Sample Input 1
+
+0 2 5 3
+Sample Output 1
+
+NO
+Explanation 1
+
+Kangaroo 2 is travelling faster than kangaroo 1, so they will never meet.
+Code:
+import java.util.*;
+class kangroo
+    {
+    public static void main(String args[])
+    {
+    Scanner s=new Scanner(System.in);
+	int a,b,c,d;
+    String ans="";
+	int z=0,x=0;
+	a=s.nextInt();
+    b=s.nextInt();
+	c=s.nextInt();
+	d=s.nextInt();   
+ 	z=((c-d)-(a-b));
+	x=b-d;int cc=0,dd=0;
+	if((z>=0&&x>0)||(z<0&&x<0))
+	{
+		if(z%x==0)
+		cc++;
+	}
+	if(cc==1)
+            System.out.println("YES");
+       else
+            System.out.println("NO");
+    }
+} 
